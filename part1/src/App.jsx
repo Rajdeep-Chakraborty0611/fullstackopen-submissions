@@ -1,4 +1,4 @@
-import {useState} from 'react'
+/*import {useState} from 'react'
 //App component
 const App=()=>{
   //setting initial value of counter as 0 and assigning useState's fucntion attribute to setCounter
@@ -40,4 +40,71 @@ const App=()=>{
     
   )
 }
+export default <App>*/
+
+
+
+//part1d
+
+import {useState} from 'react'
+const App=()=>{
+  //const[left,setLeft]=useState(0)
+  //const[right,setRight]=useState(0)
+  const[clicks,setClicks]=useState({left:0, right:0})
+
+  const handleLeftClick=()=>setClicks({ ...clicks, left:clicks.left +1})
+
+  const handleRightClick=()=>setClicks({...clicks,right:clicks.right+1})
+
+  return(
+    <div>
+      {clicks.left}
+      <button onClick={handleLeftClick}>
+        left
+      </button>
+      <button onClick={handleRightClick}>
+        right
+      </button>
+      {clicks.right}
+    </div>
+  )
+}
+
 export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

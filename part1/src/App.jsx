@@ -52,15 +52,24 @@ const App=()=>{
   const[right,setRight]=useState(0)
   //const[clicks,setClicks]=useState({left:0, right:0})
   const[allClicks,setAll]=useState([])
+  const[total,setTotal]=useState(0)
 
   const handleLeftClick=()=>{
     setAll(allClicks.concat('L'))
-    setLeft(left + 1)
+    console.log('left before' , left)
+    const updatedleft=left+1
+    setLeft(updatedleft)
+    console.log('left after', updatedleft)
+    setTotal(updatedleft + right)
   }
 
   const handleRightClick=()=>{
     setAll(allClicks.concat('R'))
-    setRight(right + 1)
+    console.log('right before',right)
+    const updatedright=right+1
+    setRight(updatedright)
+    console.log('right after',updatedright)
+    setTotal(left+updatedright)
   }
   return(
     <div>
@@ -73,6 +82,7 @@ const App=()=>{
       </button>
       {right}
       <p>{allClicks.join(' ')}</p>
+      <p>Total clicks = {total}</p>
     </div>
   )
 }

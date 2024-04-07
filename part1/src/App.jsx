@@ -47,6 +47,27 @@ export default <App>*/
 //part1d
 
 import {useState} from 'react'
+const History=(props)=>{
+  if(props.allClicks.length === 0){
+    return(
+      <div>
+        no buttons have been pressed
+      </div>
+    )
+  }
+  return(
+    <div>
+      button press history: {props.allClicks.join(' ')}
+      <p>Total : {props.allClicks.length}</p>
+    </div>
+  )
+}
+
+const Button=({handleClick,text})=>(
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
 const App=()=>{
   const[left,setLeft]=useState(0)
   const[right,setRight]=useState(0)
@@ -72,7 +93,7 @@ const App=()=>{
     setTotal(left+updatedright)
   }
   return(
-    <div>
+    /*<div>
       {left}
       <button onClick={handleLeftClick}>
         left
@@ -83,6 +104,13 @@ const App=()=>{
       {right}
       <p>{allClicks.join(' ')}</p>
       <p>Total clicks = {total}</p>
+    </div>*/
+    <div>
+      {left}
+      <Button handleClick={handleLeftClick} text='left'/>
+      <Button handleClick={handleRightClick} text='right'/>
+      {right}
+      <History allClicks={allClicks}/>      
     </div>
   )
 }

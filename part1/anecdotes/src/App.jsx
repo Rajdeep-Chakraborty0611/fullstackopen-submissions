@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-const Button=({nextanec})=>(
-  <button onClick={nextanec}>
-    next anecdote
+const Button=({event,text})=>(
+  <button onClick={event}>
+    {text}
   </button>
 )
 const App = () => {
@@ -16,19 +16,32 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
+  //const votes=[0,0,0,0,0,0,0,0] 
+  //const votecopy=[...votes]
   const [selected, setSelected] = useState(0)
+  const [vote,setVote] = useState(Array(anecdotes.length).fill(0))
 
+  const totVote=()=>{
+    console.log("before clicking vote button" ,vote[selected])
+    const votecopy=[...vote]
+    votecopy[selected]+=1
+    setVote(votecopy)
+    console.log("after clicking vote button",votecopy[selected])
+  }
   const nextAnec=()=>{
     console.log("before clicking button : " , anecdotes[selected])
-    const updateselected=Math.floor(Math.random()*8)+1
+    const updateselected=Math.floor(Math.random()*8)
     setSelected(updateselected)
     console.log("after clicking button : " , anecdotes[updateselected])
   }
   return (
     <div>
-      {anecdotes[selected]}
-      <p><Button nextanec={nextAnec} /></p>
+      <p>{anecdotes[selected]}</p>
+      <p>No of votes : {vote[selected]}
+      </p>
+      <p><Button event={totVote} text='votes' /> 
+         <Button event={nextAnec} text='next anecdote'/>
+      </p>
     </div>
   )
 }

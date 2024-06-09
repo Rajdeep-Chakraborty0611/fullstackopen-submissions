@@ -20,6 +20,8 @@ const App = () => {
   //const votecopy=[...votes]
   const [selected, setSelected] = useState(0)
   const [vote,setVote] = useState(Array(anecdotes.length).fill(0))
+  //const [maxvote,setMaxVote] = useState(0)
+  const [maxanec,setMaxAnec] = useState(0)
 
   const totVote=()=>{
     console.log("before clicking vote button" ,vote[selected])
@@ -27,6 +29,10 @@ const App = () => {
     votecopy[selected]+=1
     setVote(votecopy)
     console.log("after clicking vote button",votecopy[selected])
+    if(votecopy[selected]>vote[maxanec]){
+      //setMaxVote(votecopy[selected])
+      setMaxAnec(selected)
+    }
   }
   const nextAnec=()=>{
     console.log("before clicking button : " , anecdotes[selected])
@@ -36,12 +42,16 @@ const App = () => {
   }
   return (
     <div>
+      <h1>Anecdote of the day :</h1>
       <p>{anecdotes[selected]}</p>
       <p>No of votes : {vote[selected]}
       </p>
       <p><Button event={totVote} text='votes' /> 
          <Button event={nextAnec} text='next anecdote'/>
       </p>
+      <h1>Anecdote with most votes :</h1>
+      <p>{anecdotes[maxanec]}</p>
+      <p>Max votes : {vote[maxanec]}</p>
     </div>
   )
 }

@@ -5,16 +5,43 @@ const Button=({handleClick,text})=>(
     {text}
   </button>
 )
+const StatisticLine=({text,value,text2})=>(
+  /*<h3>
+    <p>{text} {value}{text2} </p>
+  </h3>*/
+  
+      <tr>
+      <td><h3>{text}</h3></td>
+      <td><h3>{value}{text2}</h3></td>
+      </tr>
+  
+)
 const Statistics=(props)=>{
   if(props.total>0){
-    return(
+    /*return(
       <div>
-        <h3><p>good {props.good}</p>
+      <h3>
+      <p>good {props.good}</p>
       <p>neutral {props.neutral}</p>
       <p>bad {props.bad}</p>
       <p>all {props.total}</p>
       <p>average {props.avg/props.total}</p>
       <p>positive feedback {props.good*100/props.total}%</p></h3>
+      </div>
+    )*/
+    return(
+      <div>
+        <table>
+          <tbody>
+          <StatisticLine text='good' value={props.good} />
+          <StatisticLine text='neutral' value={props.neutral} />  
+          <StatisticLine text='bad' value={props.bad} />
+          <StatisticLine text='all' value={props.total} />
+          <StatisticLine text='average' value={props.avg/props.total} />
+          <StatisticLine text='positive feedback' value={props.good*100/props.total} text2='%' />
+          </tbody>
+        </table>
+        
       </div>
     )
   }

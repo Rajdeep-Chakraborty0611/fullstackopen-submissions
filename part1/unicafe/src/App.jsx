@@ -5,14 +5,26 @@ const Button=({handleClick,text})=>(
     {text}
   </button>
 )
-const Statistics=(props)=>(
-  <h3><p>good {props.good}</p>
+const Statistics=(props)=>{
+  if(props.total>0){
+    return(
+      <div>
+        <h3><p>good {props.good}</p>
       <p>neutral {props.neutral}</p>
       <p>bad {props.bad}</p>
       <p>all {props.total}</p>
       <p>average {props.avg/props.total}</p>
       <p>positive feedback {props.good*100/props.total}%</p></h3>
-)
+      </div>
+    )
+  }
+  return(
+    <div>
+      <h3>No feedback given</h3>
+    </div>
+  )
+  
+}
 const App=()=>{
   const [good,setGood] = useState(0)
   const [neutral,setNeutral] = useState(0)

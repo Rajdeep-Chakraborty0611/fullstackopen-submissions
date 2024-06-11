@@ -3,7 +3,7 @@ const Course =({course})=>{
   const Header=(props)=>{
     return(
       <div>
-      <h1>{props.course}</h1>
+      <h2>{props.course}</h2>
     </div>
     )
   }
@@ -27,7 +27,7 @@ const Course =({course})=>{
     const total = parts.reduce((acc,curval)=>acc + curval.exercises,inival)
     return(
       <div>
-        Total number of exercises = {total}
+        <b>Total number of exercises = {total}</b>
       </div>
     )
   }
@@ -42,7 +42,8 @@ const Course =({course})=>{
 
 const App = () => {
   
-  const course = {
+  const course = [
+    {
     id: 1,
     name: 'Half Stack application development',
     parts: [
@@ -67,9 +68,33 @@ const App = () => {
         id: 4
       }
     ]
+  },
+  {
+    name: 'Node.js',
+    id: 2,
+    parts: [
+      {
+        name: 'Routing',
+        exercises: 3,
+        id: 1
+      },
+      {
+        name: 'Middlewares',
+        exercises: 7,
+        id: 2
+      }
+    ]
   }
+]
 
-  return <Course course={course} />
+  return(
+  <div>
+    <h1>Web Development Curriculum</h1>
+    {course.map(courses=>
+      <Course key={courses.id} course={courses} />
+      )}
+    
+    </div>)
 }
 
 export default App

@@ -23,14 +23,11 @@ const Course =({course})=>{
 
   const Total=({parts})=>{
 
-    var sum=0
-    {parts.map(courses=>
-      <p key={courses.id}>
-        {sum+=courses.exercises}
-      </p> )}
+    const inival=0
+    const total = parts.reduce((acc,curval)=>acc + curval.exercises,inival)
     return(
       <div>
-        Total number of exercises = {sum}
+        Total number of exercises = {total}
       </div>
     )
   }
